@@ -1,0 +1,12 @@
+# File: docker-compose.yml
+version: "3.8"
+services:
+  app:
+    build: .
+    image: student-dropout:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models:rw   # mount local models for easy dev
+    environment:
+      - PYTHONUNBUFFERED=1

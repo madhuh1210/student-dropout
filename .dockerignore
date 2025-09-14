@@ -1,0 +1,14 @@
+# File: .dockerignore
+.venv
+venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+.git
+.gitignore
+tests
+examples
+processed
+data_output

@@ -1,0 +1,8 @@
+# File: .gitignore
+__pycache__/
+.venv/
+models/
+processed/
+data_output/
+*.pyc
+.env

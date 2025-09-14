@@ -1,0 +1,11 @@
+age_at_enrollment,course,tuition_fee_status,semester_performance,attendance_rate,num_failed_courses,financial_aid,dropped_out
+18,engineering,paid,0.82,0.95,0,0,0
+21,arts,partial,0.61,0.70,1,1,1
+19,business,paid,0.75,0.88,0,0,0
+22,engineering,unpaid,0.40,0.60,2,1,1
+20,arts,paid,0.90,0.98,0,0,0
+23,business,partial,0.55,0.65,1,1,1
+18,engineering,paid,0.68,0.85,0,0,0
+24,arts,unpaid,0.30,0.50,3,1,1
+20,business,paid,0.78,0.90,0,0,0
+19,arts,partial,0.48,0.55,2,1,1

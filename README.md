@@ -60,3 +60,5 @@ python -m uvicorn api.app:app --host 127.0.0.1 --port 8000 --reload
 
 Visit: http://127.0.0.1:8000/docs
 
+
+[ci-trigger] 2025-09-14T23:34:16.7170644+05:30

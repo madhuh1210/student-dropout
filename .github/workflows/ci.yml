@@ -1,5 +1,4 @@
-﻿# File: .github/workflows/ci.yml
-name: CI
+﻿name: CI
 
 on:
   push:
@@ -10,18 +9,43 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    timeout-minutes: 30
 
-      - name: Set up Python
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.10
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
-      - name: Install dependencies
+      - name: Install OS-level build deps (for LightGBM)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake libgomp1
+
+      - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Generate synthetic dataset
+        run: |
+          python generate_dataset.py
+
+      - name: Preprocess data (create processed splits)
+        run: |
+          python -m src.prepare --input_csv examples/sample_students.csv --out_dir processed --random_state 42
+
+      - name: Train model (produces models/pipeline.joblib)
+        run: |
+          python -m src.train --processed_dir processed --models_dir models --random_state 42
+
+      - name: Show models dir (debug)
+        run: |
+          ls -la models || true
+          python -c "import joblib, pathlib; print('exists ->', pathlib.Path('models/pipeline.joblib').exists())"
 
       - name: Run tests
         run: |
